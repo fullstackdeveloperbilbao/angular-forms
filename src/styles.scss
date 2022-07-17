@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.form-control {
+  border-width: 2px;
+  &.ng-touched {
+    border-color: rgba(30, 110, 214, 1);
+  }
+  &.ng-dirty {
+    border-color: rgba(162, 143, 56, 1);
+  }
+  &.ng-invalid {
+    border-color: rgba(214, 30, 30, 1);
+  }
+}

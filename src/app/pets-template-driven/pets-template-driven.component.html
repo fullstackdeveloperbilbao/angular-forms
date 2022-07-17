@@ -1,0 +1,59 @@
+<h1>Template-driven form</h1>
+<form #petForm="ngForm" (ngSubmit)="onSubmit(petForm.form.value)">
+  <div class="form-group">
+    <label for="name">Pet name</label>
+    <input
+      class="form-control"
+      type="text"
+      id="name"
+      name="passedName"
+      [(ngModel)]="actualPet.name"
+      #nameModel="ngModel"
+      required
+    />
+    <app-validation-message
+      [message]="'Pet name is required'"
+      [hidden]="nameModel.valid || nameModel.pristine"
+    ></app-validation-message>
+  </div>
+  <div class="form-group">
+    <label for="owner">Pet owner</label>
+    <input
+      class="form-control"
+      type="text"
+      id="owner"
+      name="owner"
+      [(ngModel)]="actualPet.owner"
+    />
+  </div>
+  <div class="form-group">
+    <label for="toys">Pet toys</label>
+    <select
+      class="form-control"
+      id="toys"
+      name="toys"
+      [(ngModel)]="actualPet.toys"
+      #toysModel="ngModel"
+      multiple
+      required
+    >
+      <option *ngFor="let toy of toys" [value]="toy">{{ toy }}</option>
+    </select>
+    <app-validation-message
+      [message]="'Pet toy is required'"
+      [hidden]="toysModel.valid || toysModel.pristine"
+    ></app-validation-message>
+  </div>
+  <div class="form-group row mt-3">
+    <div class="col-sm-1">
+      <button type="button" class="btn btn-primary" (click)="petForm.reset()">
+        Clear</button
+      >
+    </div>
+    <div class="col-sm-1">
+      <button type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
