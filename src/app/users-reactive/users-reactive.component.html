@@ -1,1 +1,47 @@
 <h1>Reactive form</h1>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">User name</label>
+    <input class="form-control" type="text" id="name" formControlName="name" />
+    <app-validation-message
+      [message]="'User name is required'"
+      [hidden]="findControl('name').valid"
+    ></app-validation-message>
+  </div>
+  <div class="form-group">
+    <label for="father">User Father</label>
+    <input
+      class="form-control"
+      type="text"
+      id="father"
+      formControlName="father"
+    />
+  </div>
+  <div class="form-group">
+    <label for="toys">Videogames</label>
+    <select
+      class="form-control"
+      id="videogames"
+      formControlName="videogames"
+      multiple
+    >
+      <option *ngFor="let videogame of videogames" [value]="videogame">
+        {{ videogame }}
+      </option>
+    </select>
+    <app-validation-message
+      [message]="'Videogame is required'"
+      [hidden]="findControl('videogames').valid"
+    ></app-validation-message>
+  </div>
+  <div class="form-group row mt-3">
+    <div class="col-sm-1">
+      <button type="button" class="btn btn-primary" (click)="onClear()">
+        Clear
+      </button>
+    </div>
+    <div class="col-sm-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>

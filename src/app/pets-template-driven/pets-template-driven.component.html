@@ -1,5 +1,5 @@
 <h1>Template-driven form</h1>
-<form #petForm="ngForm" (ngSubmit)="onSubmit(petForm.form.value)">
+<form #petForm="ngForm" (ngSubmit)="onSubmit(petForm.form)">
   <div class="form-group">
     <label for="name">Pet name</label>
     <input
@@ -13,7 +13,7 @@
     />
     <app-validation-message
       [message]="'Pet name is required'"
-      [hidden]="nameModel.valid || nameModel.pristine"
+      [hidden]="nameModel.valid"
     ></app-validation-message>
   </div>
   <div class="form-group">
@@ -41,7 +41,7 @@
     </select>
     <app-validation-message
       [message]="'Pet toy is required'"
-      [hidden]="toysModel.valid || toysModel.pristine"
+      [hidden]="toysModel.valid"
     ></app-validation-message>
   </div>
   <div class="form-group row mt-3">
